@@ -30,6 +30,7 @@ GEM
     unicode-display_width (2.1.0)
 
 PLATFORMS
+  x64-mingw32
   x86_64-linux
 
 DEPENDENCIES
@@ -39,4 +40,4 @@ DEPENDENCIES
   rubocop (~> 1.21)
 
 BUNDLED WITH
-   2.2.32
+   2.3.8
