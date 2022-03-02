@@ -52,6 +52,28 @@ end
 Option ```
 as: :text``` creates textarea tag for attribute.
 
+To create submit button to your form you should use ```submit()``` method which creates button with default name "Save". 
+```ruby
+User = Struct.new(:name, :job, keyword_init: true)
+user = User.new job: 'hexlet'
+
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job
+  f.submit
+end
+
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" type="text">
+#   <label for="job">Job</label>
+#   <input name="job" type="text" value="hexlet">
+#   <input name="commit" type="submit" value="Save" >
+# </form>
+```
+
+Pass a name as first argument if you want to set another name for button.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
