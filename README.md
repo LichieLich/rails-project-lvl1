@@ -24,7 +24,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To create a simple tag just run:
+For single tag
+```ruby
+HexletCode::Tag.build('input', type: 'submit', value: 'Save') # <input type="submit" value="Save">
+```
+For pair tag add content as a block
+```ruby
+HexletCode::Tag.build('label', for: 'email') { 'Email' } # <label for="email">Email</label>
+```
+
+To create a form with nested tags for some user run
+```ruby
+User = Struct.new(:name, :job, keyword_init: true)
+@user = User.new name: 'rob', job: 'hexlet'
+HexletCode.form_for(@user) do |f|
+  f.input :name
+  f.input :job, as: :text
+end
+# <form action="#" method="post">
+#   <input name="name" type="text" value="rob">
+#   <textarea cols="20" rows="40" name="job">hexlet</textarea>
+# </form>
+```
+Option ```ruby
+as: :text``` creates textarea tag for attribute.
 
 ## Development
 
