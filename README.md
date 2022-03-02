@@ -2,9 +2,7 @@
 ![CI status](https://github.com/LichieLich/rails-project-lvl1/actions/workflows/hexlet-check.yml/badge.svg)
 # HexletCode
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a study project gem that is a simple form of 'Simple form' gem. It can create html forms for some classes with inputs for any attribute. Inputs may be as ```input``` or ```textarea```. Each input paired with it's label.
 
 ## Installation
 
