@@ -29,7 +29,7 @@ class HexletCodeTest < Minitest::Test
     assert_equal "<form action=\"#\" method=\"post\">\n</form>", HexletCode.form_for(@user) { |f| }
   end
 
-  def test_form_generates_without_url
+  def test_form_generates_with_url
     assert_equal "<form action=\"/users\" method=\"post\">\n</form>", HexletCode.form_for(@user, url: '/users') { |f| }
   end
 
@@ -40,14 +40,17 @@ class HexletCodeTest < Minitest::Test
   end
 
   def test_it_generates_input_in_form
-    html = File.open('./fixture/files/simple_input.html', 'r') { |file| file.read }
-    # TODO Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
+    html = File.read('./fixture/files/simple_input.html')
+    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
     assert_equal html, HexletCode.form_for(@user) { |f| f.input :name }
   end
 
   def test_it_generates_input_in_form_with_as_text_option
-    html = File.open('./fixture/files/as_text_input.html', 'r') { |file| file.read }
-    # TODO Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f| f.input :name; f.input :job, as: :text }
+    html = File.read('./fixture/files/as_text_input.html')
+    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
+    assert_equal html, HexletCode.form_for(@user) { |f|
+                         f.input :name
+                         f.input :job, as: :text
+                       }
   end
 end
