@@ -4,7 +4,7 @@ require_relative 'hexlet_code/version'
 require_relative 'nested_tag_creator'
 
 module HexletCode
-  autoload(:Tag, './lib/tag.rb')
+  autoload(:Tag, 'tag')
 
   def self.form_for(user, url: nil)
     Tag.build('form', action: url || '#', method: 'post') { "#{yield(NestedTagCreator.new(user))}\n" }
