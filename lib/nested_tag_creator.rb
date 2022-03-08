@@ -8,14 +8,16 @@ class NestedTagCreator
     @all_nested_tags = ''
   end
 
-  def input(attribute, as: nil)
+  def input(attribute, **args)
     @all_nested_tags += add_label(attribute)
     @all_nested_tags +=
-      case as
-      when :text
-        "\n  #{HexletCode::Tag.build('textarea', cols: 20, rows: 40, name: attribute) { @user.public_send(attribute) }}"
-      when nil
-        "\n  #{HexletCode::Tag.build('input', name: attribute, type: 'text', value: @user.public_send(attribute))}"
+      if args[:as] == :text
+        "\n  #{HexletCode::Tag.build('textarea', cols: args[:cols] || 20, rows: args[:rows] || 40, name: attribute) { @user.public_send(attribute) }}"
+      else
+        args[:name] = attribute
+        args[:type] = 'text'
+        args[:value] = @user.public_send(attribute)
+        "\n  #{HexletCode::Tag.build('input', args)}"
       end
   end
 
