@@ -1,5 +1,5 @@
 ![CI status](https://github.com/LichieLich/rails-project-lvl1/actions/workflows/main.yml/badge.svg)
-![hexlet-check status](https://github.com/LichieLich/rails-project-lvl1/actions/workflows/hexlet-check.yml/badge.svg)
+[![hexlet-check status](https://github.com/LichieLich/rails-project-lvl1/actions/workflows/hexlet-check.yml/badge.svg)]
 # HexletCode
 
 This is a study project gem that is a simple form of 'Simple form' gem. It can create html forms for some classes with inputs for any attribute. Inputs may be as ```input``` or ```textarea```. Each input paired with it's label.
