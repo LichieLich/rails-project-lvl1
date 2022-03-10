@@ -46,48 +46,48 @@ class HexletCodeTest < Minitest::Test
 
   def test_it_generates_input_in_form_with_as_text_option
     html = File.read('./fixture/files/as_text_input.html')
-    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f|
-                         f.input :name
-                         f.input :job, as: :text
-                       }
+    actual = HexletCode.form_for(@user) do |f|
+      f.input :name
+      f.input :job, as: :text
+    end
+    assert_equal html, actual
   end
 
   def test_it_generates_form_with_submit_default_name
     html = File.read('./fixture/files/form_with_submit_default_name.html')
-    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f|
-                         f.input :name
-                         f.input :job, as: :text
-                         f.submit
-                       }
+    actual = HexletCode.form_for(@user) do |f|
+      f.input :name
+      f.input :job, as: :text
+      f.submit
+    end
+    assert_equal html, actual
   end
 
   def test_it_generates_form_with_submit_param_name
     html = File.read('./fixture/files/form_with_submit_param_name.html')
-    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f|
-                         f.input :name
-                         f.input :job, as: :text
-                         f.submit 'Submit'
-                       }
+    actual = HexletCode.form_for(@user) do |f|
+      f.input :name
+      f.input :job, as: :text
+      f.submit 'Submit'
+    end
+    assert_equal html, actual
   end
 
   def test_it_generates_input_in_form_with_several_args
     html = File.read('./fixture/files/as_text_input several_args.html')
-    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f|
+    actual = HexletCode.form_for(@user) do |f|
       f.input :name, class: 'user-input'
       f.input :job
-    }
+    end
+    assert_equal html, actual
   end
     
   def test_it_generates_input_in_form_as_text_with_custom_size
     html = File.read('./fixture/files/as_text_custom_size.html')
-    # TODO: Если передавать блоке в виде do-end, то он передаётся методу assert_eqal. Переделать нормально
-    assert_equal html, HexletCode.form_for(@user) { |f|
-                         f.input :name
-                         f.input :job, as: :text, rows: 50, cols: 60
-                       }
+    actual = HexletCode.form_for(@user) do |f|
+      f.input :name
+      f.input :job, as: :text, rows: 50, cols: 60
+    end
+    assert_equal html, actual
   end
 end
