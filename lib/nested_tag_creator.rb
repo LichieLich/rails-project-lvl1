@@ -12,14 +12,14 @@ class NestedTagCreator
     @all_nested_tags += add_label(attribute)
     @all_nested_tags +=
       if args[:as] == :text
-        "\n  #{HexletCode::Tag.build('textarea', cols: args[:cols] || 20, rows: args[:rows] || 40, name: attribute) {
+        "\n  #{HexletCode::Tag.build('textarea', cols: args[:cols] || 20, rows: args[:rows] || 40, name: attribute) do
                  @user.public_send(attribute)
-               } }"
+               end }"
       else
         args[:name] = attribute
         args[:type] = 'text'
         args[:value] = @user.public_send(attribute)
-        "\n  #{HexletCode::Tag.build('input', args)}"
+        "\n  #{HexletCode::Tag.build('input', **args)}"
       end
   end
 
