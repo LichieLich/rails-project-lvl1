@@ -17,7 +17,7 @@ class NestedTagCreator
         args[:name] = attribute
         args[:type] = 'text'
         args[:value] = @user.public_send(attribute)
-        "\n  #{HexletCode::Tag.build('input', args)}"
+        "\n  #{HexletCode::Tag.build('input', **args)}"
       end
   end
 
