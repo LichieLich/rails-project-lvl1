@@ -4,7 +4,6 @@ require_relative 'hexlet_code/version'
 require_relative 'nested_tag_creator'
 
 module HexletCode
-  # autoload(:Tag, 'tag')
   module Tag
     def self.build(type, **params)
       preparatory_tag = []
