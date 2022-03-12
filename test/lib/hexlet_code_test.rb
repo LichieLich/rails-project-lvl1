@@ -26,11 +26,11 @@ class HexletCodeTest < Minitest::Test
   end
 
   def test_form_generates_without_url
-    assert_equal "<form action=\"#\" method=\"post\">\n</form>", HexletCode.form_for(@user) { |f| }
+    assert_equal "<form action=\"#\" method=\"post\">\n</form>", HexletCode.form_for(@user)
   end
 
   def test_form_generates_with_url
-    assert_equal "<form action=\"/users\" method=\"post\">\n</form>", HexletCode.form_for(@user, url: '/users') { |f| }
+    assert_equal "<form action=\"/users\" method=\"post\">\n</form>", HexletCode.form_for(@user, url: '/users')
   end
 
   def test_it_raises_no_method_error
@@ -81,7 +81,7 @@ class HexletCodeTest < Minitest::Test
     end
     assert_equal html, actual
   end
-    
+
   def test_it_generates_input_in_form_as_text_with_custom_size
     html = File.read('./fixture/files/as_text_custom_size.html')
     actual = HexletCode.form_for(@user) do |f|
