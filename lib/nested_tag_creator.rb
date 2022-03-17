@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class NestedTagCreator
-  attr_accessor :user, :result_nested_tags
+class HexletCode::NestedTagCreator
+  attr_accessor :user
 
   def initialize(user)
     @user = user

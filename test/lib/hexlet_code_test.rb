@@ -11,28 +11,6 @@ class HexletCodeTest < Minitest::Test
     refute_nil ::HexletCode::VERSION
   end
 
-  def test_single_tag
-    assert_equal '<br>', HexletCode::Tag.build('br')
-    assert_equal '<img src="path/to/image">', HexletCode::Tag.build('img', src: 'path/to/image')
-    assert_equal '<input type="submit" value="Save">', HexletCode::Tag.build('input', type: 'submit', value: 'Save')
-  end
-
-  def test_pair_tag
-    assert_equal '<div></div>', HexletCode::Tag.build('div')
-  end
-
-  def test_pair_tag_with_content
-    assert_equal '<label for="email">Email</label>', HexletCode::Tag.build('label', for: 'email') { 'Email' }
-  end
-
-  def test_form_generates_without_url
-    assert_equal "<form action=\"#\" method=\"post\">\n</form>", HexletCode.form_for(@user)
-  end
-
-  def test_form_generates_with_url
-    assert_equal "<form action=\"/users\" method=\"post\">\n</form>", HexletCode.form_for(@user, url: '/users')
-  end
-
   def test_it_raises_no_method_error
     assert_raises(NoMethodError) do
       HexletCode.form_for(@user, url: '/users') { |f| f.input :age }
@@ -40,54 +18,24 @@ class HexletCodeTest < Minitest::Test
   end
 
   def test_it_generates_input_in_form
-    html = File.read('./fixture/files/simple_input.html')
-    assert_equal html, HexletCode.form_for(@user) { |f| f.input :name }
-  end
-
-  def test_it_generates_input_in_form_with_as_text_option
-    html = File.read('./fixture/files/as_text_input.html')
-    actual = HexletCode.form_for(@user) do |f|
-      f.input :name
-      f.input :job, as: :text
-    end
-    assert_equal html, actual
+    assert_equal get_html('simple_input'), HexletCode.form_for(@user) { |f| f.input :name }
   end
 
   def test_it_generates_form_with_submit_default_name
-    html = File.read('./fixture/files/form_with_submit_default_name.html')
     actual = HexletCode.form_for(@user) do |f|
       f.input :name
       f.input :job, as: :text
       f.submit
     end
-    assert_equal html, actual
-  end
-
-  def test_it_generates_form_with_submit_param_name
-    html = File.read('./fixture/files/form_with_submit_param_name.html')
-    actual = HexletCode.form_for(@user) do |f|
-      f.input :name
-      f.input :job, as: :text
-      f.submit 'Submit'
-    end
-    assert_equal html, actual
-  end
-
-  def test_it_generates_input_in_form_with_several_args
-    html = File.read('./fixture/files/as_text_input several_args.html')
-    actual = HexletCode.form_for(@user) do |f|
-      f.input :name, class: 'user-input'
-      f.input :job
-    end
-    assert_equal html, actual
+    assert_equal get_html('form_with_submit_default_name'), actual
   end
 
   def test_it_generates_input_in_form_as_text_with_custom_size
-    html = File.read('./fixture/files/as_text_custom_size.html')
     actual = HexletCode.form_for(@user) do |f|
-      f.input :name
+      f.input :name, class: 'user-input'
       f.input :job, as: :text, rows: 50, cols: 60
+      f.submit 'Submit'
     end
-    assert_equal html, actual
+    assert_equal get_html('as_text_custom_size'), actual
   end
 end
