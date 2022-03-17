@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class HexletCode::NestedTagCreator
+  class NestedTagCreator
     attr_accessor :user
 
     def initialize(user)
