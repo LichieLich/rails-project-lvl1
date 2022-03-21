@@ -25,12 +25,12 @@ module HexletCode
         args[:cols] ||= 20
         args[:rows] ||= 40
         args[:name] = attribute
-        create_tag(attribute, **args)
+        create_tag('textarea', **args)
       else
         args[:name] = attribute
         args[:type] = 'text'
         args[:value] = @tags_info.object.public_send(attribute)
-        HexletCode::Tag.build('input', **args)
+        create_tag('input', **args)
       end
     end
 
@@ -40,15 +40,19 @@ module HexletCode
       args[:name] = 'commit'
       args[:type] = 'submit'
       args[:value] = submit_name
-      HexletCode::Tag.build('input', **args)
+      create_tag('input', **args)
     end
 
     def add_label(attribute)
       HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
     end
 
-    def create_tag(attribute, **args)
-      HexletCode::Tag.build('textarea', **args) { @tags_info.object.public_send(attribute) }
+    def create_tag(type, **args)
+      if type == 'textarea'
+        HexletCode::Tag.build(type, **args) { @tags_info.object.public_send(args[:name]) }
+      else
+        HexletCode::Tag.build(type, **args)
+      end
     end
   end
 end
