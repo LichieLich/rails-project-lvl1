@@ -9,16 +9,14 @@ module HexletCode
       @form = []
       unless tags_info.inputs.empty?
         tags_info.inputs.each do |input|
-          @form << "  #{build_input(input)}"
+          @form << "  #{build_input(input[0], **input[1])}"
         end
       end
       @form << "  #{build_submit(tags_info.submit_button)}" if tags_info.submit_button
       @form = @form.join("\n")
     end
 
-    def build_input(input)
-      attribute = input[0]
-      args = input[1]
+    def build_input(attribute, **args)
       @form << "  #{add_label(attribute)}"
       if args[:as] == :text
         args.delete :as
