@@ -25,13 +25,14 @@ module HexletCode
         args[:cols] ||= 20
         args[:rows] ||= 40
         args[:name] = attribute
-        create_tag('textarea', **args)
+        type = 'textarea'
       else
         args[:name] = attribute
         args[:type] = 'text'
         args[:value] = @tags_info.object.public_send(attribute)
-        create_tag('input', **args)
+        type = 'input'
       end
+      create_tag(type, **args)
     end
 
     def build_submit(submit)
