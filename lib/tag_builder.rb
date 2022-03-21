@@ -19,13 +19,13 @@ module HexletCode
     def build_input(input)
       attribute = input[0]
       args = input[1]
-      @form << "  #{HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }}"
+      @form << "  #{add_label(attribute)}"
       if args[:as] == :text
         args.delete :as
         args[:cols] ||= 20
         args[:rows] ||= 40
         args[:name] = attribute
-        HexletCode::Tag.build('textarea', **args) { @tags_info.object.public_send(attribute) }
+        create_tag(attribute, **args)
       else
         args[:name] = attribute
         args[:type] = 'text'
@@ -43,8 +43,12 @@ module HexletCode
       HexletCode::Tag.build('input', **args)
     end
 
-    # def add_label(attribute)
-    #   HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
-    # end
+    def add_label(attribute)
+      HexletCode::Tag.build('label', for: attribute) { attribute.capitalize }
+    end
+
+    def create_tag(attribute, **args)
+      HexletCode::Tag.build('textarea', **args) { @tags_info.object.public_send(attribute) }
+    end
   end
 end
