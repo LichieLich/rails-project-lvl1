@@ -18,7 +18,7 @@ module HexletCode
 
     def build_input(input)
       attribute = input[0]
-      args = input[1] || {}
+      args = input[1]
       @form << "  #{add_label(attribute)}"
       if args[:as] == :text
         args.delete :as
@@ -36,7 +36,7 @@ module HexletCode
 
     def build_submit(submit)
       submit_name = submit[0] || 'Save'
-      args = submit[1] || {}
+      args = submit[1]
       args[:name] = 'commit'
       args[:type] = 'submit'
       args[:value] = submit_name
