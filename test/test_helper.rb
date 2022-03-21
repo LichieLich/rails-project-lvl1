@@ -6,3 +6,7 @@ require 'hexlet_code'
 require 'minitest/autorun'
 
 User = Struct.new(:name, :job, keyword_init: true)
+
+def get_html(name)
+  File.read("./fixture/files/#{name}.html")
+end
