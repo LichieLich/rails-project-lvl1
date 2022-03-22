@@ -33,7 +33,7 @@ class HexletCodeTest < Minitest::Test
   def test_it_generates_input_in_form_as_text_with_custom_size
     actual = HexletCode.form_for(@user) do |f|
       f.input :name, class: 'user-input'
-      f.input :job, as: :text, rows: 50, cols: 60
+      f.input :job, as: :text, cols: 60, rows: 50
       f.submit 'Submit'
     end
     assert_equal get_html('as_text_custom_size'), actual
