@@ -8,5 +8,5 @@ require 'minitest/autorun'
 User = Struct.new(:name, :job, keyword_init: true)
 
 def get_html(name)
-  File.read("./fixture/files/#{name}.html")
+  File.read("./test/fixture/files/#{name}.html")
 end

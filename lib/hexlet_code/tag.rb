@@ -2,12 +2,12 @@
 
 module HexletCode
   module Tag
-    def self.build(type, **params)
+    def self.build(type, params = {})
       preparatory_tag = prepare_tag(type, **params)
-      return "#{preparatory_tag.join(' ')}>" if single_tag?(type)
+      return "#{preparatory_tag}>" if single_tag?(type)
 
       content = yield if block_given?
-      "#{preparatory_tag.join(' ')}>#{content}</#{type}>"
+      "#{preparatory_tag}>#{content}</#{type}>"
     end
 
     def self.single_tag?(type)
@@ -15,11 +15,11 @@ module HexletCode
          isindex keygen link meta param source track wbr].include? type
     end
 
-    def self.prepare_tag(type, **params)
+    def self.prepare_tag(type, params = {})
       preparatory_tag = []
       preparatory_tag << "<#{type}"
       params.each { |param, value| preparatory_tag << "#{param}=\"#{value}\"" } unless params.empty?
-      preparatory_tag
+      preparatory_tag.join(' ')
     end
   end
 end
