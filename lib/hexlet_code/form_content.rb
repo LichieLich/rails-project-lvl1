@@ -10,13 +10,14 @@ module HexletCode
     end
 
     def input(attribute, args = {})
-      args[:attribute] = attribute
+      # args[:attribute] = attribute
+      args[:name] = attribute
       args[:value] = @object.public_send(attribute)
       @inputs << args
     end
 
     def submit(button_name = 'Save', args = {})
-      args[:submit_button] = button_name
+      args[:value] = button_name
       @submit_button = args
     end
   end

@@ -4,11 +4,8 @@ module HexletCode
   class Inputs
     class Input
       def self.build(args = {})
-        options = args
-        options[:name] = options[:attribute]
-        options.delete :attribute
-        options[:type] = 'text'
-        HexletCode::Tag.build('input', **options)
+        args[:type] = 'text'
+        HexletCode::Tag.build('input', **args)
       end
     end
   end

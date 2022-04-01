@@ -10,9 +10,6 @@ module HexletCode
   def self.form_for(object, args = {}, &block)
     args[:action] = args[:url] || '#'
     args[:method] ||= 'post'
-    nested_tags_info = FormContent.new(object)
-    block.call(nested_tags_info) if block_given?
-    nested_tags = FormRenderer.new(nested_tags_info).build_form_content
-    FormRenderer.new.build_form(nested_tags, **args)
+    FormRenderer.new.build_form(object, **args, &block)
   end
 end
